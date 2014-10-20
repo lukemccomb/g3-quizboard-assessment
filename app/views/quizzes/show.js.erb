@@ -1,0 +1,17 @@
+$.get("/quizzes/1", function(data) {
+  $('body').html(data);
+  $.getJSON("/quizzes/1/questions", function(data) {
+    var num = 0;
+    var question = data[num];
+    $('.question').append(question.description);
+    for (i = 0; i < data.length; i++) {
+      $('.answers').append('<button class="btn btn-default">' +
+                            question.possible_answers[i].description +
+                            '</button>')
+    }
+    $('.score').append(num + 1 + '/4')
+  });
+
+});
+
+
